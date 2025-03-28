@@ -4,5 +4,5 @@ Author: _(TODO: insert your name here!)_
 
 ## Resources
 
-*   _(TODO: list your resources here!)_
+*   How to get Java to stop botherin me about my generic array - https://www.geeksforgeeks.org/how-to-create-a-generic-array-in-java/
 *   ...
