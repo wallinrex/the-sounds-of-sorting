@@ -155,11 +155,16 @@ public class Sorts {
         if (hi <= lo + 1) {
             return;
         }
+        if (hi == lo + 2) {
+            if (arr[lo].compareTo(arr[lo+1]) > 0) {
+                swap(arr, lo, lo + 1);
+            }
+            return;
+        }
         int mid = (hi - lo) / 2 + lo;
         int pivotIndex = medianIndex(arr, lo, mid, hi - 1);
         T pivot = arr[pivotIndex];
         swap(arr, hi - 1, pivotIndex);
-        pivotIndex = hi - 1;
         int i = lo;
         int j = hi - 2;
         while (j > i) {
@@ -173,12 +178,9 @@ public class Sorts {
                 i++;
             }
         }
-        while (arr[pivotIndex].compareTo(arr[pivotIndex-1]) < 0) {
-            swap(arr, pivotIndex, pivotIndex - 1);
-            pivotIndex--;
-        }
-        quickSort(arr, lo, pivotIndex);
-        quickSort(arr, pivotIndex + 1, hi);
+        swap(arr, hi - 1, i);
+        quickSort(arr, lo, i);
+        quickSort(arr, i + 1, hi);
     }
 
     private static <T extends Comparable<? super T>> int medianIndex(
