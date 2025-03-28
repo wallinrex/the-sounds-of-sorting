@@ -1,6 +1,7 @@
 package edu.grinnell.csc207.soundsofsorting.sorts;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import edu.grinnell.csc207.soundsofsorting.sortevents.SortEvent;
@@ -215,6 +216,13 @@ public class Sorts {
                 swap(arr, i, i - 1);
                 i--;
             }
+        }
+    }
+
+    <T> void eventSort(T[] l, List<SortEvent<T>> events) {
+        Iterator<SortEvent<T>> iter = events.iterator();
+        while (iter.hasNext()) {
+            iter.next().apply(l);
         }
     }
 }
