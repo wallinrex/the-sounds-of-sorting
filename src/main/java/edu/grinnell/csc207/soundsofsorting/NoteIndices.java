@@ -1,16 +1,29 @@
 package edu.grinnell.csc207.soundsofsorting;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * A collection of indices into a Scale object.
  * These indices are the subject of the various sorting algorithms
  * in the program.
  */
 public class NoteIndices {
+
+    Integer[] indices;
+
+    boolean[] highlights;
+
     /**
      * @param n the size of the scale object that these indices map into
      */
     public NoteIndices(int n) {
-        // TODO: fill me in!
+        indices = new Integer[n];
+        for (int i = 0; i < n; i++) {
+            indices[i] = i;
+        }
+        highlights = new boolean[n];
     }
     
     /**
@@ -20,13 +33,19 @@ public class NoteIndices {
      * @param n the size of the scale object that these indices map into
      */
     public void initializeAndShuffle(int n) {
-        // TODO: fill me in!
+        indices = new Integer[n];
+        for (int i = 0; i < n; i++) {
+            indices[i] = i;
+        }
+        List<Integer> lst = Arrays.asList(indices);
+        Collections.shuffle(lst);
+        indices = lst.toArray(new Integer[0]);
+        highlights = new boolean[n];
     }
     
     /** @return the indices of this NoteIndices object */
-    public Integer[] getNotes() { 
-        // TODO: fill me in!
-        return null;
+    public Integer[] getNotes() {
+        return indices;
     }
     
     /**
@@ -34,7 +53,7 @@ public class NoteIndices {
      * @param index the index to highlight
      */
     public void highlightNote(int index) {
-        // TODO: fill me in
+        highlights[index] = true;
     }
     
     /**
@@ -42,12 +61,13 @@ public class NoteIndices {
      * @return true if the given index is highlighted
      */
     public boolean isHighlighted(int index) {
-        // TODO: fill me in
-        return false;
+        return highlights[index];
     }
     
     /** Clears all highlighted indices from this collection */
     public void clearAllHighlighted() {
-        // TODO: fill me in
+        for (int i = 0; i < highlights.length; i++) {
+            highlights[i] = false;
+        }
     }
 }
