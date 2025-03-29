@@ -52,4 +52,3 @@ public class SwapEvent<T> implements SortEvent<T> {
         return true;
     }
 }
-}

@@ -49,4 +49,3 @@ public class CopyEvent<T> implements SortEvent<T> {
         return true;
     }
 }
-}
