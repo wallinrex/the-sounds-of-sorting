@@ -22,8 +22,23 @@ public class ArrayPanel extends JPanel {
         this.setPreferredSize(new Dimension(width, height));
     }
 
+    private static int max(Integer[] arr) {
+        int max = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+        return max;
+    }
+
     @Override
     public void paintComponent(Graphics g) {
-        // TODO: fill me in!
+        Integer[] indices = notes.getNotes();
+        int barWidth = getWidth() / indices.length;
+        int heightScale = getHeight() / (max(indices) + 1);
+        for (int i = 0; i < indices.length; i++) {
+            g.fillRect(i * barWidth, 0, barWidth, (indices[i] + 1) * heightScale);
+        }
     }
 }
