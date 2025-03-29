@@ -11,19 +11,21 @@ public class SwapEvent<T> implements SortEvent<T> {
     int ind1;
 
     int ind2;
-    
+
     /**
      * Constructor for the SwapEvent object
-     * @param first one index being swapped
+     * 
+     * @param first  one index being swapped
      * @param second the other index being swapped
      */
-    public SwapEvent (int first, int second) {
+    public SwapEvent(int first, int second) {
         ind1 = first;
         ind2 = second;
     }
 
     /**
      * Swaps the values at ind1 and ind2
+     * 
      * @param arr the array to modify
      */
     @Override

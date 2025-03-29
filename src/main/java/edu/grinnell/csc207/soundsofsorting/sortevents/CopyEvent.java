@@ -7,23 +7,25 @@ import java.util.List;
  * A <code>CopyEvent</code> logs a copy of a value into an index of the array.
  */
 public class CopyEvent<T> implements SortEvent<T> {
-    
+
     T val;
 
     int index;
 
     /**
      * Constructor for CopyEvent object
+     * 
      * @param value the value being copied
-     * @param ind the index into which value is copied
+     * @param ind   the index into which value is copied
      */
-    public CopyEvent (T value, int ind) {
+    public CopyEvent(T value, int ind) {
         val = value;
         index = ind;
     }
 
     /**
      * Copies val into arr at index
+     * 
      * @param arr the array to modify
      */
     @Override

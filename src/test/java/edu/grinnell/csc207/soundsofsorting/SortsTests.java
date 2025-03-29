@@ -41,37 +41,37 @@ public class SortsTests {
 
     public static Integer[] makeTestArray() {
         return new Integer[] {
-            3, 7, 9, 1, 2,
-            18, 16, 15, 19, 8,
-            14, 12, 5, 13, 4,
-            6, 0, 17, 11, 10
+                3, 7, 9, 1, 2,
+                18, 16, 15, 19, 8,
+                14, 12, 5, 13, 4,
+                6, 0, 17, 11, 10
         };
     }
 
     public static Integer[] makeDuplicatesTestArray() {
         return new Integer[] {
-            3, 7, 9, 1, 2,
-            18, 16, 1, 19, 8,
-            14, 12, 5, 13, 14,
-            6, 0, 14, 11, 10
+                3, 7, 9, 1, 2,
+                18, 16, 1, 19, 8,
+                14, 12, 5, 13, 14,
+                6, 0, 14, 11, 10
         };
     }
 
     public static Integer[] makeOrderedTestArray() {
         return new Integer[] {
-            -12, -9, -8, -8, -6,
-            -3, 0, 1, 1, 2,
-            4, 5, 12, 13, 14,
-            16, 20, 24, 31, 40
+                -12, -9, -8, -8, -6,
+                -3, 0, 1, 1, 2,
+                4, 5, 12, 13, 14,
+                16, 20, 24, 31, 40
         };
     }
 
     public static Integer[] makeReversedTestArray() {
         return new Integer[] {
-            40, 31, 24, 20, 16,
-            14, 13, 12, 5, 4,
-            2, 1, 1, 0, -3,
-            -6, -8, -8, -9, -12
+                40, 31, 24, 20, 16,
+                14, 13, 12, 5, 4,
+                2, 1, 1, 0, -3,
+                -6, -8, -8, -9, -12
         };
     }
 
@@ -99,7 +99,7 @@ public class SortsTests {
     public void testBubbleSortReverseOrder() {
         testSort(Sorts::bubbleSort, makeReversedTestArray());
     }
-    
+
     @Test
     public void testInsertionSort() {
         testSort(Sorts::insertionSort, makeTestArray());
@@ -124,7 +124,7 @@ public class SortsTests {
     public void testInsertionSortReverseOrder() {
         testSort(Sorts::insertionSort, makeReversedTestArray());
     }
-    
+
     @Test
     public void testSelectionSort() {
         testSort(Sorts::selectionSort, makeTestArray());
@@ -174,7 +174,7 @@ public class SortsTests {
     public void testMergeSortReverseOrder() {
         testSort(Sorts::mergeSort, makeReversedTestArray());
     }
-    
+
     @Test
     public void testQuickSort() {
         testSort(Sorts::quickSort, makeTestArray());

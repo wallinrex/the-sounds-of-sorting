@@ -15,16 +15,18 @@ public class CompareEvent<T> implements SortEvent<T> {
 
     /**
      * Constructor for CompareEvent object
-     * @param first one index being compared
+     * 
+     * @param first  one index being compared
      * @param second the other index being compared
      */
-    public CompareEvent (int first, int second) {
+    public CompareEvent(int first, int second) {
         ind1 = first;
         ind2 = second;
     }
 
     /**
      * Does nothing
+     * 
      * @param arr the array to modify
      */
     @Override
