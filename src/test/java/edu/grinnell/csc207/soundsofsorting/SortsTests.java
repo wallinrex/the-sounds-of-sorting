@@ -2,11 +2,15 @@ package edu.grinnell.csc207.soundsofsorting;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 import org.junit.jupiter.api.Test;
 
 import edu.grinnell.csc207.soundsofsorting.sorts.Sorts;
+import edu.grinnell.csc207.soundsofsorting.sortevents.SortEvent;
 
 public class SortsTests {
     /**
@@ -23,6 +27,18 @@ public class SortsTests {
         return true;
     }
 
+    public void testSort(Consumer<Integer[]> func, Integer[] arr) {
+        func.accept(arr);
+        assertTrue(sorted(arr));
+    }
+
+    public void testSortEvents(Function<Integer[], List<SortEvent<Integer>>> func, Integer[] arr) {
+        Integer[] arr2 = Arrays.copyOf(arr, arr.length);
+        List<SortEvent<Integer>> events = func.apply(arr);
+        Sorts.eventSort(arr2, events);
+        assertTrue(sorted(arr2));
+    }
+
     public static Integer[] makeTestArray() {
         return new Integer[] {
             3, 7, 9, 1, 2,
@@ -30,12 +46,6 @@ public class SortsTests {
             14, 12, 5, 13, 4,
             6, 0, 17, 11, 10
         };
-    }
-
-    public void testSort(Consumer<Integer[]> func) {
-        Integer[] arr = makeTestArray();
-        func.accept(arr);
-        assertTrue(sorted(arr));
     }
 
     public static Integer[] makeDuplicatesTestArray() {
@@ -47,12 +57,6 @@ public class SortsTests {
         };
     }
 
-    public void testSortDuplicates(Consumer<Integer[]> func) {
-        Integer[] arr = makeDuplicatesTestArray();
-        func.accept(arr);
-        assertTrue(sorted(arr));
-    }
-
     public static Integer[] makeOrderedTestArray() {
         return new Integer[] {
             -12, -9, -8, -8, -6,
@@ -60,12 +64,6 @@ public class SortsTests {
             4, 5, 12, 13, 14,
             16, 20, 24, 31, 40
         };
-    }
-
-    public void testSortInOrder(Consumer<Integer[]> func) {
-        Integer[] arr = makeOrderedTestArray();
-        func.accept(arr);
-        assertTrue(sorted(arr));
     }
 
     public static Integer[] makeReversedTestArray() {
@@ -77,129 +75,153 @@ public class SortsTests {
         };
     }
 
-    public void testSortReverseOrder(Consumer<Integer[]> func) {
-        Integer[] arr = makeReversedTestArray();
-        func.accept(arr);
-        assertTrue(sorted(arr));
+    @Test
+    public void testBubbleSort() {
+        testSort(Sorts::bubbleSort, makeTestArray());
     }
 
     @Test
-    public void testBubbleSort() {
-        testSort(Sorts::bubbleSort);
+    public void testBubbleSortEvents() {
+        testSortEvents(Sorts::bubbleSort, makeTestArray());
     }
 
     @Test
     public void testBubbleSortDuplicates() {
-        testSortDuplicates(Sorts::bubbleSort);
+        testSort(Sorts::bubbleSort, makeDuplicatesTestArray());
     }
 
     @Test
     public void testBubbleSortInOrder() {
-        testSortInOrder(Sorts::bubbleSort);
+        testSort(Sorts::bubbleSort, makeOrderedTestArray());
     }
 
     @Test
     public void testBubbleSortReverseOrder() {
-        testSortReverseOrder(Sorts::bubbleSort);
+        testSort(Sorts::bubbleSort, makeReversedTestArray());
     }
     
     @Test
     public void testInsertionSort() {
-        testSort(Sorts::insertionSort);
+        testSort(Sorts::insertionSort, makeTestArray());
+    }
+
+    @Test
+    public void testInsertionSortEvents() {
+        testSortEvents(Sorts::insertionSort, makeTestArray());
     }
 
     @Test
     public void testInsertionSortDuplicates() {
-        testSortDuplicates(Sorts::insertionSort);
+        testSort(Sorts::insertionSort, makeDuplicatesTestArray());
     }
 
     @Test
     public void testInsertionSortInOrder() {
-        testSortInOrder(Sorts::insertionSort);
+        testSort(Sorts::insertionSort, makeOrderedTestArray());
     }
 
     @Test
     public void testInsertionSortReverseOrder() {
-        testSortReverseOrder(Sorts::insertionSort);
+        testSort(Sorts::insertionSort, makeReversedTestArray());
     }
     
     @Test
     public void testSelectionSort() {
-        testSort(Sorts::selectionSort);
+        testSort(Sorts::selectionSort, makeTestArray());
+    }
+
+    @Test
+    public void testSelectionSortEvents() {
+        testSortEvents(Sorts::selectionSort, makeTestArray());
     }
 
     @Test
     public void testSelectionSortDuplicates() {
-        testSortDuplicates(Sorts::selectionSort);
+        testSort(Sorts::selectionSort, makeDuplicatesTestArray());
     }
 
     @Test
     public void testSelectionSortInOrder() {
-        testSortInOrder(Sorts::selectionSort);
+        testSort(Sorts::selectionSort, makeOrderedTestArray());
     }
 
     @Test
     public void testSelectionSortReverseOrder() {
-        testSortReverseOrder(Sorts::selectionSort);
+        testSort(Sorts::selectionSort, makeReversedTestArray());
     }
 
     @Test
     public void testMergeSort() {
-        testSort(Sorts::mergeSort);
+        testSort(Sorts::mergeSort, makeTestArray());
+    }
+
+    @Test
+    public void testMergeSortEvents() {
+        testSortEvents(Sorts::mergeSort, makeTestArray());
     }
 
     @Test
     public void testMergeSortDuplicates() {
-        testSortDuplicates(Sorts::mergeSort);
+        testSort(Sorts::mergeSort, makeDuplicatesTestArray());
     }
 
     @Test
     public void testMergeSortInOrder() {
-        testSortInOrder(Sorts::mergeSort);
+        testSort(Sorts::mergeSort, makeOrderedTestArray());
     }
 
     @Test
     public void testMergeSortReverseOrder() {
-        testSortReverseOrder(Sorts::mergeSort);
+        testSort(Sorts::mergeSort, makeReversedTestArray());
     }
     
     @Test
     public void testQuickSort() {
-        testSort(Sorts::quickSort);
+        testSort(Sorts::quickSort, makeTestArray());
+    }
+
+    @Test
+    public void testQuickSortEvents() {
+        testSortEvents(Sorts::quickSort, makeTestArray());
     }
 
     @Test
     public void testQuickSortDuplicates() {
-        testSortDuplicates(Sorts::quickSort);
+        testSort(Sorts::quickSort, makeDuplicatesTestArray());
     }
 
     @Test
     public void testQuickSortInOrder() {
-        testSortInOrder(Sorts::quickSort);
+        testSort(Sorts::quickSort, makeOrderedTestArray());
     }
 
     @Test
     public void testQuickSortReverseOrder() {
-        testSortReverseOrder(Sorts::quickSort);
+        testSort(Sorts::quickSort, makeReversedTestArray());
     }
 
     @Test
     public void testGnomeSort() {
-        testSort(Sorts::gnomeSort);
+        testSort(Sorts::gnomeSort, makeTestArray());
+    }
+
+    @Test
+    public void testGnomeSortEvents() {
+        testSortEvents(Sorts::gnomeSort, makeTestArray());
     }
 
     @Test
     public void testGnomeSortDuplicates() {
-        testSortDuplicates(Sorts::gnomeSort);
+        testSort(Sorts::gnomeSort, makeDuplicatesTestArray());
     }
 
     @Test
     public void testGnomeSortInOrder() {
-        testSortInOrder(Sorts::gnomeSort);
+        testSort(Sorts::gnomeSort, makeOrderedTestArray());
     }
 
     @Test
     public void testGnomeSortReverseOrder() {
-        testSortReverseOrder(Sorts::gnomeSort);
+        testSort(Sorts::gnomeSort, makeReversedTestArray());
     }
 }

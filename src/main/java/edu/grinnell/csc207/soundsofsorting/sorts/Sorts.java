@@ -92,7 +92,7 @@ public class Sorts {
                 ret.add(new CompareEvent<>(j, j - 1));
                 if (arr[j].compareTo(arr[j-1]) < 0) {
                     swap(arr, j, j - 1);
-                    ret.add(new SwapEvent<>(i, j - 1));
+                    ret.add(new SwapEvent<>(j, j - 1));
                 }
             }
         }
@@ -302,7 +302,7 @@ public class Sorts {
      * @param l the array to sort
      * @param events a list of the events with which to sort
      */
-    <T> void eventSort(T[] l, List<SortEvent<T>> events) {
+    public static <T> void eventSort(T[] l, List<SortEvent<T>> events) {
         for (SortEvent<T> event : events) {
             event.apply(l);
         }
