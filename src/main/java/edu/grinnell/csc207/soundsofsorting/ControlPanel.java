@@ -127,7 +127,6 @@ public class ControlPanel extends JPanel {
                 if (!isSorting) {
                     scale = generateScale((String) scales.getSelectedItem());
                     notes.initializeAndShuffle(scale.size());
-                    ControlPanel.this.panel.repaint();
                 }
             }
         });
@@ -142,7 +141,7 @@ public class ControlPanel extends JPanel {
                     return;
                 }
                 isSorting = true;
-
+                
                 List<SortEvent<Integer>> events = new ArrayList<>();
                 for (SortEvent<Integer> event : generateEvents((String) sorts.getSelectedItem(),
                         Arrays.copyOf(notes.getNotes(), notes.getNotes().length))) {

@@ -1,5 +1,6 @@
 package edu.grinnell.csc207.soundsofsorting;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -34,11 +35,10 @@ public class NoteIndices {
      * @param n the size of the scale object that these indices map into
      */
     public void initializeAndShuffle(int n) {
-        indices = new Integer[n];
-        for (int i = 0; i < n; i++) {
-            indices[i] = i;
+        List<Integer> lst = new ArrayList<>();
+        for(int i = 0; i < n; i++) {
+            lst.add(i);
         }
-        List<Integer> lst = Arrays.asList(indices);
         Collections.shuffle(lst);
         indices = lst.toArray(new Integer[0]);
         highlights = new boolean[n];
@@ -68,8 +68,6 @@ public class NoteIndices {
 
     /** Clears all highlighted indices from this collection */
     public void clearAllHighlighted() {
-        for (int i = 0; i < highlights.length; i++) {
-            highlights[i] = false;
-        }
+        highlights = new boolean[highlights.length];
     }
 }
