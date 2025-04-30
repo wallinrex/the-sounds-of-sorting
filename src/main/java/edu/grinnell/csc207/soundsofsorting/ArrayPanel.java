@@ -36,15 +36,21 @@ public class ArrayPanel extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
-        g.clearRect(0, 0, getWidth(), getHeight());
+        super.paintComponent(g);
         Integer[] indices = notes.getNotes();
-        int barWidth = getWidth() / indices.length;
-        int heightScale = getHeight() / (max(indices) + 1);
-        int colorScale = 255 / max(indices);
-        g.setColor(Color.lightGray);
-        for (int i = 0; i < indices.length; i++) {
-            g.setColor(new Color(0, indices[i] * colorScale, 0));
-            g.fillRect(i * barWidth, getHeight(), barWidth, -(indices[i] + 1) * heightScale);
+        int height = getHeight();
+        int maxHeight = max(indices) + 1;
+        int heightScale = height / maxHeight;
+        int colorScale = 255 / maxHeight;
+        int width = getWidth();
+        int barWidth = width / indices.length;
+        g.setColor(Color.WHITE);
+        g.fillRect(0, 0, width, height);
+        for(int i = 0; i < indices.length; i++) {
+            g.setColor(new Color(colorScale * indices[i], 0, colorScale * indices[i]));
+            g.fillRect(i * barWidth, 0, barWidth, height);
+            g.setColor(Color.WHITE);
+            g.fillRect(i * barWidth, 0, barWidth, height - heightScale * (indices[i] + 1));
         }
     }
 }
