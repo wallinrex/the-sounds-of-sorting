@@ -13,6 +13,26 @@ Author: Rex Wallin
 
 ## Git Log
 
+commit 1a51f83dfaaffec18f2ec97d113a22926f270748 (HEAD -> main)
+Author: wallinrex <wallinrex@gmail.com>
+Date:   Tue Apr 29 19:58:16 2025 -0500
+
+    Fixed a bunch of small issues    
+
+commit f61a7c9f4bf82a1509b062b19c8df6fd3c846030
+Author: wallinrex <wallinrex@gmail.com>
+Date:   Tue Apr 29 19:58:01 2025 -0500
+
+    Rewrote paintCcomponent to work properly
+
+    Apparently JPanels aren't smart enough to handle negative numbers
+
+commit e09ed34cb5c361486c65b7731888f418ba7d5b8c (origin/main, origin/HEAD)
+Author: wallinrex <wallinrex@gmail.com>
+Date:   Tue Apr 29 00:26:57 2025 -0500
+
+    Made the code very slightly more concise
+
 commit e53d74c19af6f9f52b395428d7c53be296103b03 (HEAD -> main)
 Author: wallinrex <wallinrex@gmail.com>
 Date:   Fri Mar 28 22:46:55 2025 -0500
