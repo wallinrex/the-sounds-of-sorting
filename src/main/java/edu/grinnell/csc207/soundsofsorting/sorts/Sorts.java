@@ -95,12 +95,10 @@ public class Sorts {
             T[] arr) {
         List<SortEvent<T>> ret = new ArrayList<>();
         for (int i = 0; i < arr.length; i++) {
-            for (int j = i; j > 0; j--) {
+            for (int j = i; j > 0 && arr[j].compareTo(arr[j - 1]) < 0; j--) {
                 ret.add(new CompareEvent<>(j, j - 1));
-                if (arr[j].compareTo(arr[j - 1]) < 0) {
-                    swap(arr, j, j - 1);
-                    ret.add(new SwapEvent<>(j, j - 1));
-                }
+                swap(arr, j, j - 1);
+                ret.add(new SwapEvent<>(j, j - 1));
             }
         }
         return ret;
@@ -300,7 +298,9 @@ public class Sorts {
         List<SortEvent<T>> ret = new ArrayList<>();
         int i = 0;
         while (i < arr.length) {
-            ret.add(new CompareEvent<>(i, i - 1));
+            if(i > 0) {
+                ret.add(new CompareEvent<>(i, i - 1));
+            }
             if (i == 0 || arr[i].compareTo(arr[i - 1]) >= 0) {
                 i++;
             } else {

@@ -127,6 +127,7 @@ public class ControlPanel extends JPanel {
                 if (!isSorting) {
                     scale = generateScale((String) scales.getSelectedItem());
                     notes.initializeAndShuffle(scale.size());
+                    ControlPanel.this.panel.repaint();
                 }
             }
         });
@@ -145,9 +146,7 @@ public class ControlPanel extends JPanel {
                 List<SortEvent<Integer>> events = new ArrayList<>();
                 for (SortEvent<Integer> event : generateEvents((String) sorts.getSelectedItem(),
                         Arrays.copyOf(notes.getNotes(), notes.getNotes().length))) {
-                    if (event.isEmphasized()) {
-                        events.add(event);
-                    }
+                    events.add(event);
                 }
 
                 // NOTE: The Timer class repetitively invokes a method at a
@@ -168,10 +167,10 @@ public class ControlPanel extends JPanel {
                                 scale.playNote(index, notes.isHighlighted(index));
                                 notes.highlightNote(index);
                             }
-                            panel.repaint();
+                            ControlPanel.this.panel.repaint();
                         } else {
                             this.cancel();
-                            panel.repaint();
+                            ControlPanel.this.panel.repaint();
                             isSorting = false;
                         }
                     }
